@@ -18,6 +18,7 @@ class LineCount
   private
 
   def clean
+    # ARM (15-03-08): Create the tmp/ directory or assume that it exists?
     File.delete(OUTPUT_FILENAME) if File.exist?(OUTPUT_FILENAME)
   end
 
@@ -31,13 +32,18 @@ class LineCount
     ]
 
     directories = [
-      '/Users/alistair/src/packmanager/dev/app',
-      '/Users/alistair/src/packmanager/dev/test',
-      '/Users/alistair/src/packmanager/dev/spec',
+      'app',
+      'test',
+      'spec',
     ]
 
     # ARM (15-03-08): Check error conditions?
-    system("cloc #{options.join(' ')} #{directories.join(' ')}")
+    system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
+  end
+
+  def fully_qualified(directories)
+    root = "#{ENV['PACKMANAGER_DIR']}/dev"
+    directories.map { |directory| "#{root}/#{directory}" }
   end
 
 end
