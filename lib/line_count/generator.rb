@@ -23,8 +23,9 @@ module LineCount
     def clean
       FileUtils::mkdir_p 'tmp/sloc'
 
-      File.delete(OUTPUT_FILENAME) if File.exist?(OUTPUT_FILENAME)
-      File.delete(FILTERED_FILENAME) if File.exist?(FILTERED_FILENAME)
+      [OUTPUT_FILENAME, FILTERED_FILENAME].each do |filename|
+        File.delete(filename) if File.exist?(filename)
+      end
     end
 
     def generate_sloc
