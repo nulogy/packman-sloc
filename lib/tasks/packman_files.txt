@@ -1,0 +1,3 @@
+/Users/alistair/src/packmanager/dev/app
+/Users/alistair/src/packmanager/dev/test
+/Users/alistair/src/packmanager/dev/spec
