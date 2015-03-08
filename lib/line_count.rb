@@ -31,14 +31,17 @@ class LineCount
       '--sql-project=packman-sloc'
     ]
 
-    directories = [
+    # ARM (15-03-08): Check error conditions?
+    system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
+  end
+
+  # PackManager directories containing the source code that we want to count.
+  def directories
+    [
       'app',
       'test',
       'spec',
     ]
-
-    # ARM (15-03-08): Check error conditions?
-    system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
   end
 
   def fully_qualified(directories)
