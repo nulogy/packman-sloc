@@ -1,12 +1,11 @@
+require_relative '../line_count'
+
 #
 # Knows how to generate line count information for PackManager.
 #
 
 module LineCount
   class Generator
-
-    OUTPUT_FILENAME = 'tmp/sloc/packman_sloc.csv'
-    FILTERED_FILENAME = 'tmp/sloc/packman_sloc_filtered.csv'
 
     def self.generate
       new.generate
@@ -23,7 +22,7 @@ module LineCount
     def clean
       FileUtils::mkdir_p 'tmp/sloc'
 
-      [OUTPUT_FILENAME, FILTERED_FILENAME].each do |filename|
+      [LineCount::OUTPUT_FILENAME, LineCount::FILTERED_FILENAME].each do |filename|
         File.delete(filename) if File.exist?(filename)
       end
     end
@@ -37,7 +36,7 @@ module LineCount
         '--3',
         '--by-file',
         '--force-lang=html,erb',
-        "--report-file=#{OUTPUT_FILENAME}",
+        "--report-file=#{LineCount::OUTPUT_FILENAME}",
       ]
 
       # ARM (15-03-08): Check error conditions?
