@@ -27,12 +27,17 @@ class LineCount
       '--force-lang=html,erb',
       "--sql=#{OUTPUT_FILENAME}",
       '--sql-append',
-      '--sql-project=packman-sloc',
-      '--list-file=lib/tasks/packman_files.txt'
+      '--sql-project=packman-sloc'
+    ]
+
+    directories = [
+      '/Users/alistair/src/packmanager/dev/app',
+      '/Users/alistair/src/packmanager/dev/test',
+      '/Users/alistair/src/packmanager/dev/spec',
     ]
 
     # ARM (15-03-08): Check error conditions?
-    system("cloc #{options.join(' ')}")
+    system("cloc #{options.join(' ')} #{directories.join(' ')}")
   end
 
 end
