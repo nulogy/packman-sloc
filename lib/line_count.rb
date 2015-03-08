@@ -4,7 +4,8 @@
 
 class LineCount
 
-  OUTPUT_FILENAME = 'tmp/packman_sloc.sql'
+  OUTPUT_FILENAME = 'tmp/sloc/packman_sloc.csv'
+  FILTERED_FILENAME = 'tmp/sloc/packman_sloc_filtered.csv'
 
   def self.generate
     new.generate
@@ -12,23 +13,29 @@ class LineCount
 
   def generate
     clean
-    generate_sloc_sql
+    generate_sloc
+    filter_sloc
   end
 
   private
 
   def clean
-    # ARM (15-03-08): Create the tmp/ directory or assume that it exists?
+    FileUtils::mkdir_p 'tmp/sloc'
+
     File.delete(OUTPUT_FILENAME) if File.exist?(OUTPUT_FILENAME)
+    File.delete(FILTERED_FILENAME) if File.exist?(FILTERED_FILENAME)
   end
 
-  def generate_sloc_sql
+  def generate_sloc
     options = [
       '--quiet',
+      '--skip-uniqueness',
+      '--unix',
+      '--csv',
+      '--3',
+      '--by-file',
       '--force-lang=html,erb',
-      "--sql=#{OUTPUT_FILENAME}",
-      '--sql-append',
-      '--sql-project=packman-sloc'
+      "--report-file=#{OUTPUT_FILENAME}",
     ]
 
     # ARM (15-03-08): Check error conditions?
@@ -45,8 +52,19 @@ class LineCount
   end
 
   def fully_qualified(directories)
-    root = "#{ENV['PACKMANAGER_DIR']}/dev"
-    directories.map { |directory| "#{root}/#{directory}" }
+    directories.map { |directory| "#{root}#{directory}" }
+  end
+
+  def root
+    "#{ENV['PACKMANAGER_DIR']}/dev/"
+  end
+
+  def filter_sloc
+    File.open(FILTERED_FILENAME, 'w') do |filtered|
+      File.open(OUTPUT_FILENAME).each do |line|
+        filtered << line.gsub(root, '')
+      end
+    end
   end
 
 end
