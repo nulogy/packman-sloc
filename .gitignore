@@ -14,3 +14,6 @@
 
 # Ignore fast rake tasks cache.
 .rake_tasks
+
+# Ignore any output.
+tmp/sloc
