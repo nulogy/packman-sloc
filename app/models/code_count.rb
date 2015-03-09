@@ -19,4 +19,10 @@ class CodeCount < ActiveRecord::Base
 
   belongs_to :run
 
+  validates_numericality_of :blanks, :only_integer => true
+  validates_numericality_of :comments, :only_integer => true
+  validates_numericality_of :lines, :only_integer => true
+  validates_numericality_of :scale
+  validates_numericality_of :scaled_lines
+
 end
