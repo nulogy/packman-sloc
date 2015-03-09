@@ -13,8 +13,6 @@ class CreateCodeCounts < ActiveRecord::Migration
 
       t.decimal :scale, null: false
       t.decimal :scaled_lines, null: false
-
-      t.timestamps null: false
     end
   end
 

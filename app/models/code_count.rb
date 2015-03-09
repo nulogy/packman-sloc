@@ -11,8 +11,6 @@
 #  lines        :integer          not null
 #  scale        :decimal(, )      not null
 #  scaled_lines :decimal(, )      not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
 #
 
 class CodeCount < ActiveRecord::Base

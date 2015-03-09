@@ -19,16 +19,14 @@ ActiveRecord::Schema.define(version: 20150308193007) do
   enable_extension "citext"
 
   create_table "code_counts", force: :cascade do |t|
-    t.integer  "run_id",       null: false
-    t.string   "language",     null: false
-    t.string   "filename",     null: false
-    t.integer  "blanks",       null: false
-    t.integer  "comments",     null: false
-    t.integer  "lines",        null: false
-    t.decimal  "scale",        null: false
-    t.decimal  "scaled_lines", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer "run_id",       null: false
+    t.string  "language",     null: false
+    t.string  "filename",     null: false
+    t.integer "blanks",       null: false
+    t.integer "comments",     null: false
+    t.integer "lines",        null: false
+    t.decimal "scale",        null: false
+    t.decimal "scaled_lines", null: false
   end
 
   create_table "runs", force: :cascade do |t|
