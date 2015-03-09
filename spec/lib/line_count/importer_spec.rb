@@ -29,7 +29,6 @@ RSpec.describe LineCount::Importer do
 
     expect { subject.import(csv_source) }.to raise_error(ActiveRecord::RecordInvalid).
         and change { CodeCount.count }.by(0)
-
   end
 
 end
