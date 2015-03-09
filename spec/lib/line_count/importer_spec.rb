@@ -21,4 +21,15 @@ RSpec.describe LineCount::Importer do
         blanks: 485, comments: 6, lines: 1778, scale: 4.2, scaled_lines: 7467.6)
   end
 
+  it 'imports from CSV source in a transaction' do
+    csv_source = StringIO.new <<-CSV.strip_heredoc
+      Ruby,test/factories.rb,411,10,1924,4.2,8080.8
+      Ruby,test/unit/shipment_test.rb,485,6,1778,4.2,_bad_value_
+    CSV
+
+    expect { subject.import(csv_source) }.to raise_error(ActiveRecord::RecordInvalid).
+        and change { CodeCount.count }.by(0)
+
+  end
+
 end
