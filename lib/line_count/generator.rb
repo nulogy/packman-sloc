@@ -62,8 +62,8 @@ module LineCount
 
     def filter_sloc
       File.open(FILTERED_FILENAME, 'w') do |filtered|
-        File.open(OUTPUT_FILENAME).each do |line|
-          filtered << line.gsub(root, '')
+        File.open(OUTPUT_FILENAME).each_with_index do |line, i|
+          filtered << line.gsub(root, '') unless i.zero?
         end
       end
     end
