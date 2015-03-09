@@ -54,6 +54,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  gem 'annotate', '~> 2.6.6'
+end
+
 group :test do
   gem 'factory_girl', '~> 4.5.0'
   gem 'rspec', '~> 3.2.0'
