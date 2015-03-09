@@ -1,0 +1,4 @@
+# PackManager directories containing the source code that we want to count.
+- app
+- test
+- spec

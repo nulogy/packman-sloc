@@ -43,13 +43,8 @@ module LineCount
       system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
     end
 
-    # PackManager directories containing the source code that we want to count.
     def directories
-      [
-        'app',
-        'test',
-        'spec',
-      ]
+      YAML.load_file(LineCount::PACKMAN_DIRECTORIES)
     end
 
     def fully_qualified(directories)
