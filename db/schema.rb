@@ -35,5 +35,5 @@ ActiveRecord::Schema.define(version: 20150308193007) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "code_counts", "runs"
+  add_foreign_key "code_counts", "runs", on_delete: :cascade
 end
