@@ -9,7 +9,7 @@ namespace :sloc do
   end
 
   desc 'Import the generated PackManager source code metrics'
-  task :import do
+  task :import => :environment do
     LineCount::Importer.import
   end
 
