@@ -10,7 +10,7 @@ RSpec.describe LineCount::Importer do
       Ruby,test/unit/shipment_test.rb,485,6,1778,4.2,7467.6
     CSV
 
-    subject.import(source_csv)
+    expect { subject.import(source_csv) }.to change { CodeCount.count }.by(2)
 
     code_counts = CodeCount.all
 
