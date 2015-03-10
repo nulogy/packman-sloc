@@ -44,7 +44,7 @@ module LineCount
     end
 
     def filter_out(row)
-      row[filename_index] =~ filters
+       filters.match(row[filename_index])
     end
 
     def filename_index
@@ -59,9 +59,12 @@ module LineCount
       { run: run, directory: directory(row) }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
     end
 
-    # ARM (15-03-10): TBD.
     def directory(row)
-      'TBD'
+      directories.match(row[filename_index])[1]
+    end
+
+    def directories
+      @directories ||= Regexp.new("^(#{YAML.load_file(LineCount::PACKMAN_DIRECTORIES).join('|')})/.*")
     end
 
   end
