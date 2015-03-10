@@ -22,7 +22,7 @@ module LineCount
     def clean
       FileUtils::mkdir_p 'tmp/sloc'
 
-      [LineCount::SLOC_RAW__FILENAME, LineCount::SLOC_NORMALIZED_FILENAME].each do |filename|
+      [LineCount::SLOC_RAW_FILENAME, LineCount::SLOC_NORMALIZED_FILENAME].each do |filename|
         File.delete(filename) if File.exist?(filename)
       end
     end
@@ -36,7 +36,7 @@ module LineCount
         '--3',
         '--by-file',
         '--force-lang=html,erb',
-        "--report-file=#{LineCount::SLOC_RAW__FILENAME}",
+        "--report-file=#{LineCount::SLOC_RAW_FILENAME}",
       ]
 
       system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
@@ -56,7 +56,7 @@ module LineCount
 
     def filter_sloc
       File.open(SLOC_NORMALIZED_FILENAME, 'w') do |filtered|
-        File.open(SLOC_RAW__FILENAME).each_with_index do |line, i|
+        File.open(SLOC_RAW_FILENAME).each_with_index do |line, i|
           filtered << line.gsub(root, '') unless i.zero?
         end
       end
