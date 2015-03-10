@@ -22,7 +22,7 @@ module LineCount
     def clean
       FileUtils::mkdir_p 'tmp/sloc'
 
-      [LineCount::OUTPUT_FILENAME, LineCount::FILTERED_FILENAME].each do |filename|
+      [LineCount::SLOC_RAW__FILENAME, LineCount::SLOC_NORMALIZED_FILENAME].each do |filename|
         File.delete(filename) if File.exist?(filename)
       end
     end
@@ -36,7 +36,7 @@ module LineCount
         '--3',
         '--by-file',
         '--force-lang=html,erb',
-        "--report-file=#{LineCount::OUTPUT_FILENAME}",
+        "--report-file=#{LineCount::SLOC_RAW__FILENAME}",
       ]
 
       # ARM (15-03-08): Check error conditions?
@@ -44,7 +44,7 @@ module LineCount
     end
 
     def directories
-      YAML.load_file(LineCount::PACKMAN_DIRECTORIES)
+      @directories ||= YAML.load_file(LineCount::PACKMAN_DIRECTORIES)
     end
 
     def fully_qualified(directories)
@@ -56,8 +56,8 @@ module LineCount
     end
 
     def filter_sloc
-      File.open(FILTERED_FILENAME, 'w') do |filtered|
-        File.open(OUTPUT_FILENAME).each_with_index do |line, i|
+      File.open(SLOC_NORMALIZED_FILENAME, 'w') do |filtered|
+        File.open(SLOC_RAW__FILENAME).each_with_index do |line, i|
           filtered << line.gsub(root, '') unless i.zero?
         end
       end

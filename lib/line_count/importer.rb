@@ -21,7 +21,7 @@ module LineCount
     ]
 
     def self.import
-      new.import(filtered_csv_source)
+      new.import(normalized_csv_source)
     end
 
     def import(csv_source)
@@ -29,6 +29,8 @@ module LineCount
         run = Run.create!
 
         CSV.parse(csv_source) do |row|
+          next if filter_out(row)
+
           CodeCount.create! attrs(run, row)
         end
       end
@@ -36,8 +38,17 @@ module LineCount
 
     private
 
-    def self.filtered_csv_source
-      File.open(LineCount::FILTERED_FILENAME, 'r') { |f| f.read }
+    def self.normalized_csv_source
+      File.open(LineCount::SLOC_NORMALIZED_FILENAME, 'r') { |f| f.read }
+    end
+
+    def filter_out(row)
+      # ARM (15-03-10): TBD. Null filter for the moment.
+      false
+    end
+
+    def filters
+      @filters ||= YAML.load_file(LineCount::PACKMAN_FILTERS)
     end
 
     def attrs(run, row)

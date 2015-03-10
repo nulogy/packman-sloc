@@ -1,0 +1,4 @@
+# PackManager filters: skip any filename that matches any line below
+- ^lib/custom_outputs/staged/
+- ^client/desktop/vendor/
+
