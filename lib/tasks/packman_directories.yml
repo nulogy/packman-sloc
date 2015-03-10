@@ -1,4 +1,11 @@
 # PackManager directories containing the source code that we want to count.
+- acceptance
 - app
-- test
+- bounded_context_adapters
+- bounded_contexts
+- client
+- domain
+- engines
+- lib
 - spec
+- test
