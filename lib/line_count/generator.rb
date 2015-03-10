@@ -39,7 +39,6 @@ module LineCount
         "--report-file=#{LineCount::SLOC_RAW__FILENAME}",
       ]
 
-      # ARM (15-03-08): Check error conditions?
       system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
     end
 
