@@ -9,6 +9,7 @@ require_relative '../line_count'
 module LineCount
   class Importer
 
+    # Maps to CodeCount attributes by position in the generated CSV.
     CODE_COUNT_FIELDS = [
       'language',
       'filename',
