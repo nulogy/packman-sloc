@@ -9,15 +9,16 @@ require_relative '../line_count'
 module LineCount
   class Importer
 
-    # Maps to CodeCount attributes by position in the generated CSV.
-    CODE_COUNT_FIELDS = [
+    # Specifies the position of CodeCount attributes in the generated CSV.
+    # See http://cloc.sourceforge.net/ for the CSV format.
+    CODE_COUNT_ATTRIBUTES = [
       'language',
       'filename',
       'blanks',
       'comments',
       'lines',
       'scale',
-      'scaled_lines',
+      'scaled_lines'
     ]
 
     def self.import
@@ -43,16 +44,19 @@ module LineCount
     end
 
     def filter_out(row)
-      # ARM (15-03-10): TBD. Null filter for the moment.
-      false
+      row[filename_index] =~ filters
+    end
+
+    def filename_index
+      CODE_COUNT_ATTRIBUTES.index('filename')
     end
 
     def filters
-      @filters ||= YAML.load_file(LineCount::PACKMAN_FILTERS)
+      @filters ||= Regexp.new(YAML.load_file(LineCount::PACKMAN_FILTERS).join('|'))
     end
 
     def attrs(run, row)
-      { run: run }.merge(Hash[CODE_COUNT_FIELDS.zip(row)])
+      { run: run }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
     end
 
   end
