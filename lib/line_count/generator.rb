@@ -39,15 +39,15 @@ module LineCount
         "--report-file=#{LineCount::SLOC_RAW_FILENAME}",
       ]
 
-      system("cloc #{options.join(' ')} #{fully_qualified(directories).join(' ')}")
+      system("cloc #{options.join(' ')} #{fully_qualified_directories.join(' ')}")
+    end
+
+    def fully_qualified_directories
+      directories.map { |directory| "#{root}#{directory}" }
     end
 
     def directories
       @directories ||= YAML.load_file(LineCount::PACKMAN_DIRECTORIES)
-    end
-
-    def fully_qualified(directories)
-      directories.map { |directory| "#{root}#{directory}" }
     end
 
     def root
