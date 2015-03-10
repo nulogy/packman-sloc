@@ -1,4 +1,5 @@
 require_relative '../line_count'
+require_relative '../../lib/line_count/directory_helper'
 
 #
 # Knows how to generate line count information for PackManager.
@@ -6,6 +7,7 @@ require_relative '../line_count'
 
 module LineCount
   class Generator
+    include DirectoryHelper
 
     def self.generate
       new.generate
@@ -48,10 +50,6 @@ module LineCount
 
     def directories
       @directories ||= YAML.load_file(LineCount::PACKMAN_DIRECTORIES)
-    end
-
-    def root
-      "#{ENV['PACKMANAGER_DIR']}/dev/"
     end
 
     def filter_sloc

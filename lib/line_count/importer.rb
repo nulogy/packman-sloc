@@ -1,6 +1,7 @@
 require 'csv'
 
 require_relative '../line_count'
+require_relative '../../lib/line_count/directory_helper'
 
 #
 # Knows how to import PackManager line count information.
@@ -8,6 +9,7 @@ require_relative '../line_count'
 
 module LineCount
   class Importer
+    include DirectoryHelper
 
     # Specifies the position of CodeCount attributes in the generated CSV.
     # See http://cloc.sourceforge.net/ for the CSV format.
@@ -27,12 +29,12 @@ module LineCount
 
     def import(csv_source)
       ActiveRecord::Base.transaction do
-        run = Run.create!
+        run = Run.create! run_attrs
 
         CSV.parse(csv_source) do |row|
           next if filter_out(row)
 
-          CodeCount.create! attrs(run, row)
+          CodeCount.create! code_count_attrs(run, row)
         end
       end
     end
@@ -41,6 +43,18 @@ module LineCount
 
     def self.normalized_csv_source
       File.open(LineCount::SLOC_NORMALIZED_FILENAME, 'r') { |f| f.read }
+    end
+
+    def run_attrs
+      branch = ''
+      sha = ''
+
+      Dir.chdir(root) do
+        branch = `git symbolic-ref --short HEAD`
+        sha = `git rev-parse HEAD`
+      end
+
+      { branch: branch, sha: sha }
     end
 
     def filter_out(row)
@@ -55,7 +69,7 @@ module LineCount
       @filters_matcher ||= Regexp.new(YAML.load_file(LineCount::PACKMAN_FILTERS).join('|'))
     end
 
-    def attrs(run, row)
+    def code_count_attrs(run, row)
       { run: run, directory: directory(row) }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
     end
 
