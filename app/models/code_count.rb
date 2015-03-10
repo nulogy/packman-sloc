@@ -4,6 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  run_id       :integer          not null
+#  directory    :string           not null
 #  language     :string           not null
 #  filename     :string           not null
 #  blanks       :integer          not null

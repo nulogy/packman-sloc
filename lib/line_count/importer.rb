@@ -56,7 +56,12 @@ module LineCount
     end
 
     def attrs(run, row)
-      { run: run }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
+      { run: run, directory: directory(row) }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
+    end
+
+    # ARM (15-03-10): TBD.
+    def directory(row)
+      'TBD'
     end
 
   end

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150308193007) do
 
   create_table "code_counts", force: :cascade do |t|
     t.integer "run_id",       null: false
+    t.string  "directory",    null: false
     t.string  "language",     null: false
     t.string  "filename",     null: false
     t.integer "blanks",       null: false

@@ -4,6 +4,7 @@ class CreateCodeCounts < ActiveRecord::Migration
     create_table :code_counts do |t|
       t.integer :run_id, null: false
 
+      t.string :directory, null: false
       t.string :language, null: false
       t.string :filename, null: false
 
