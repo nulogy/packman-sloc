@@ -24,7 +24,7 @@ namespace :sloc do
 
   desc 'List all runs of PackManager source code metrics'
   task :list => :environment do
-    Run.all.each { |run| puts "Run #{run.id}: #{run.tag} at #{run.created_at}" }
+    Run.all.each { |run| puts "Run #{run.id} at #{run.created_at}" }
   end
 
 end

@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20150308193007) do
   end
 
   create_table "runs", force: :cascade do |t|
-    t.string   "tag",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

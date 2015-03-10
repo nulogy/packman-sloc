@@ -25,10 +25,10 @@ module LineCount
 
     def import(csv_source)
       ActiveRecord::Base.transaction do
-        run = Run.create!(:tag => 'test')
+        run = Run.create!
 
         CSV.parse(csv_source) do |row|
-          CodeCount.create!(attrs(run, row))
+          CodeCount.create! attrs(run, row)
         end
       end
     end
