@@ -44,15 +44,15 @@ module LineCount
     end
 
     def filter_out(row)
-       filters.match(row[filename_index])
+       filters_matcher.match(row[filename_index])
     end
 
     def filename_index
       CODE_COUNT_ATTRIBUTES.index('filename')
     end
 
-    def filters
-      @filters ||= Regexp.new(YAML.load_file(LineCount::PACKMAN_FILTERS).join('|'))
+    def filters_matcher
+      @filters_matcher ||= Regexp.new(YAML.load_file(LineCount::PACKMAN_FILTERS).join('|'))
     end
 
     def attrs(run, row)
@@ -60,11 +60,11 @@ module LineCount
     end
 
     def directory(row)
-      directories.match(row[filename_index])[1]
+      directories_matcher.match(row[filename_index])[1]
     end
 
-    def directories
-      @directories ||= Regexp.new("^(#{YAML.load_file(LineCount::PACKMAN_DIRECTORIES).join('|')})/.*")
+    def directories_matcher
+      @directories_matcher ||= Regexp.new("^(#{YAML.load_file(LineCount::PACKMAN_DIRECTORIES).join('|')})/.*")
     end
 
   end
