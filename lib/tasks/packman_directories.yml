@@ -1,4 +1,4 @@
-# Generate source code counts for these PackManager directories:
+# Generate source code counts for these PackManager root directories:
 - acceptance
 - app
 - bounded_context_adapters
