@@ -5,7 +5,7 @@
 - bounded_contexts
 - client
 - domain
-- engines
 - lib
 - spec
 - test
+- vendor
