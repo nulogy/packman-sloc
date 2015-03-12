@@ -1,7 +1,7 @@
 require 'csv'
 
 require_relative '../line_count'
-require_relative '../../lib/line_count/directory_helper'
+require_relative '../../lib/line_count/configuration'
 
 #
 # Knows how to import PackManager line count information.
@@ -9,7 +9,7 @@ require_relative '../../lib/line_count/directory_helper'
 
 module LineCount
   class Importer
-    include DirectoryHelper
+    include Configuration
 
     # Specifies the position of CodeCount attributes in the generated CSV.
     # See http://cloc.sourceforge.net/ for the CSV format.

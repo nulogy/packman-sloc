@@ -1,5 +1,5 @@
 require_relative '../line_count'
-require_relative '../../lib/line_count/directory_helper'
+require_relative '../../lib/line_count/configuration'
 
 #
 # Knows how to generate line count information for PackManager.
@@ -7,7 +7,7 @@ require_relative '../../lib/line_count/directory_helper'
 
 module LineCount
   class Generator
-    include DirectoryHelper
+    include Configuration
 
     def self.generate
       new.generate

@@ -1,5 +1,5 @@
 module LineCount
-  module DirectoryHelper
+  module Configuration
 
     def root
       "#{ENV['PACKMANAGER_DIR']}/sloc/"
