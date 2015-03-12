@@ -46,15 +46,17 @@ module LineCount
     end
 
     def run_attrs
-      branch = ''
-      sha = ''
+      attrs = {}
 
       Dir.chdir(root) do
         branch = `git symbolic-ref --short HEAD`
+        from = `git show --format=%ci HEAD`
         sha = `git rev-parse HEAD`
+
+        attrs = { branch: branch, from: from, sha: sha }
       end
 
-      { branch: branch, sha: sha }
+      attrs
     end
 
     def filter_out(row)

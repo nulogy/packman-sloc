@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  branch     :string           not null
+#  from       :datetime         not null
 #  sha        :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
