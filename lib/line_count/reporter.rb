@@ -1,15 +1,15 @@
 module LineCount
-  class RunReport
+  class Reporter
 
-    def self.generate(run_id)
-      new(run_id).generate
+    def self.report(run_id)
+      new(run_id).report
     end
 
     def initialize(run_id)
       @run_id = run_id
     end
 
-    def generate
+    def report
       puts format(results)
     end
 

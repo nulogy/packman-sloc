@@ -1,6 +1,6 @@
 require_relative '../line_count/generator'
 require_relative '../line_count/importer'
-require_relative '../line_count/run_report'
+require_relative '../line_count/reporter'
 
 namespace :sloc do
 
@@ -30,7 +30,7 @@ namespace :sloc do
 
   desc 'Generate a report of PackManager source code metrics for the specified run'
   task :report, [:run_id] => :environment do |_, args|
-    LineCount::RunReport.generate(args.run_id)
+    LineCount::Reporter.report(args.run_id)
   end
 
 end
