@@ -2,7 +2,7 @@ module LineCount
   module DirectoryHelper
 
     def root
-      "#{ENV['PACKMANAGER_DIR']}/dev/"
+      "#{ENV['PACKMANAGER_DIR']}/sloc/"
     end
 
   end
