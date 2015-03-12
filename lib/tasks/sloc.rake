@@ -4,13 +4,13 @@ require_relative '../line_count/reporter'
 
 namespace :sloc do
 
-  desc 'Capture a run of PackManager source code metrics'
+  desc 'Capture a snapshot of PackManager source code metrics'
   task :capture => [:generate, :import] do
   end
 
-  desc 'Clear PackManager source code metrics for the specified run'
-  task :clear, [:run_id] => :environment do |_, args|
-    Run.delete(args.run_id)
+  desc 'Clear PackManager source code metrics for the specified snapshot'
+  task :clear, [:snapshot_id] => :environment do |_, args|
+    Snapshot.delete(args.snapshot_id)
   end
 
   desc 'Generate PackManager source code metrics'
@@ -25,12 +25,12 @@ namespace :sloc do
 
   desc 'List all runs of PackManager source code metrics'
   task :list => :environment do
-    Run.all.each { |run| puts run.to_s }
+    Snapshot.all.each { |snapshot| puts snapshot.to_s }
   end
 
-  desc 'Generate a report of PackManager source code metrics for the specified run'
-  task :report, [:run_id] => :environment do |_, args|
-    LineCount::Reporter.report(args.run_id)
+  desc 'Generate a report of PackManager source code metrics for the specified snapshot'
+  task :report, [:snapshot_id] => :environment do |_, args|
+    LineCount::Reporter.report(args.snapshot_id)
   end
 
 end

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: runs
+# Table name: snapshots
 #
 #  id         :integer          not null, primary key
 #  branch     :string           not null
@@ -10,12 +10,12 @@
 #  updated_at :datetime         not null
 #
 
-class Run < ActiveRecord::Base
+class Snapshot < ActiveRecord::Base
 
   has_many :code_counts, dependent: :delete_all
 
   def to_s
-    "Run #{id} at #{created_at} from #{branch.chomp} (#{sha.chomp})"
+    "Snapshot #{id} at #{created_at} from #{branch.chomp} (#{sha.chomp})"
   end
 
 end

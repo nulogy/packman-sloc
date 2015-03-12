@@ -1,12 +1,12 @@
 module LineCount
   class Reporter
 
-    def self.report(run_id)
-      new(run_id).report
+    def self.report(snapshot_id)
+      new(snapshot_id).report
     end
 
-    def initialize(run_id)
-      @run_id = run_id
+    def initialize(snapshot_id)
+      @snapshot_id = snapshot_id
     end
 
     def report
@@ -42,7 +42,7 @@ module LineCount
         FROM
           code_counts
         WHERE
-          run_id = #{@run_id}
+          snapshot_id = #{@snapshot_id}
         GROUP BY
           directory
         ORDER BY

@@ -2,7 +2,7 @@ class CreateCodeCounts < ActiveRecord::Migration
 
   def change
     create_table :code_counts do |t|
-      t.integer :run_id, null: false
+      t.integer :snapshot_id, null: false
 
       t.string :directory, null: false
       t.string :language, null: false

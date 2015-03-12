@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150308193007) do
   enable_extension "citext"
 
   create_table "code_counts", force: :cascade do |t|
-    t.integer "run_id",       null: false
+    t.integer "snapshot_id",  null: false
     t.string  "directory",    null: false
     t.string  "language",     null: false
     t.string  "filename",     null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150308193007) do
     t.decimal "scaled_lines", null: false
   end
 
-  create_table "runs", force: :cascade do |t|
+  create_table "snapshots", force: :cascade do |t|
     t.string   "branch",     null: false
     t.datetime "from",       null: false
     t.string   "sha",        null: false
@@ -38,5 +38,5 @@ ActiveRecord::Schema.define(version: 20150308193007) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "code_counts", "runs", on_delete: :cascade
+  add_foreign_key "code_counts", "snapshots", on_delete: :cascade
 end

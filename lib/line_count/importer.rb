@@ -29,12 +29,12 @@ module LineCount
 
     def import(csv_source)
       ActiveRecord::Base.transaction do
-        run = Run.create! run_attrs
+        snapshot = Snapshot.create! snapshot_attrs
 
         CSV.parse(csv_source) do |row|
           next if filter_out(row)
 
-          CodeCount.create! code_count_attrs(run, row)
+          CodeCount.create! code_count_attrs(snapshot, row)
         end
       end
     end
@@ -45,7 +45,7 @@ module LineCount
       File.open(LineCount::SLOC_NORMALIZED_FILENAME, 'r') { |f| f.read }
     end
 
-    def run_attrs
+    def snapshot_attrs
       attrs = {}
 
       Dir.chdir(root) do
@@ -71,8 +71,8 @@ module LineCount
       @filters_matcher ||= Regexp.new(YAML.load_file(LineCount::PACKMAN_FILTERS).join('|'))
     end
 
-    def code_count_attrs(run, row)
-      { run: run, directory: directory(row) }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
+    def code_count_attrs(snapshot, row)
+      { snapshot: snapshot, directory: directory(row) }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
     end
 
     def directory(row)

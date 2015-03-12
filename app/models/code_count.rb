@@ -3,7 +3,7 @@
 # Table name: code_counts
 #
 #  id           :integer          not null, primary key
-#  run_id       :integer          not null
+#  snapshot_id  :integer          not null
 #  directory    :string           not null
 #  language     :string           not null
 #  filename     :string           not null
@@ -16,7 +16,7 @@
 
 class CodeCount < ActiveRecord::Base
 
-  belongs_to :run
+  belongs_to :snapshot
 
   validates_numericality_of :blanks, :only_integer => true
   validates_numericality_of :comments, :only_integer => true
