@@ -48,10 +48,6 @@ module LineCount
       directories.map { |directory| "#{root}#{directory}" }
     end
 
-    def directories
-      @directories ||= YAML.load_file(LineCount::PACKMAN_DIRECTORIES)
-    end
-
     def filter_sloc
       File.open(SLOC_NORMALIZED_FILENAME, 'w') do |filtered|
         File.open(SLOC_RAW_FILENAME).each_with_index do |line, i|

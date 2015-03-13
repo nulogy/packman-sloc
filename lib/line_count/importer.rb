@@ -66,20 +66,12 @@ module LineCount
       CODE_COUNT_ATTRIBUTES.index('filename')
     end
 
-    def filters_matcher
-      @filters_matcher ||= Regexp.new(YAML.load_file(LineCount::PACKMAN_FILTERS).join('|'))
-    end
-
     def code_count_attrs(snapshot, row)
       { snapshot: snapshot, directory: directory(row) }.merge(Hash[CODE_COUNT_ATTRIBUTES.zip(row)])
     end
 
     def directory(row)
       directories_matcher.match(row[filename_index])[1]
-    end
-
-    def directories_matcher
-      @directories_matcher ||= Regexp.new("^(#{YAML.load_file(LineCount::PACKMAN_DIRECTORIES).join('|')})/.*")
     end
 
   end
