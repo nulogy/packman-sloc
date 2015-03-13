@@ -1,12 +1,17 @@
 module LineCount
   class Reporter
 
-    def self.report(snapshot_id)
-      new(snapshot_id).report
+    def self.report(snapshot_id, language_filter)
+      new(snapshot_id, language_filter).report
     end
 
-    def initialize(snapshot_id)
+    def self.languages
+      puts CodeCount.pluck(:language).uniq().sort
+    end
+
+    def initialize(snapshot_id, language_filter)
       @snapshot_id = snapshot_id
+      @language_filter = language_filter
     end
 
     def report
@@ -43,11 +48,18 @@ module LineCount
           code_counts
         WHERE
           snapshot_id = #{@snapshot_id}
+          #{apply_language_filter}
         GROUP BY
           directory
         ORDER BY
           directory
       SQL
+    end
+
+    def apply_language_filter
+      languages = @language_filter.split('|').map { |l| "'#{l}'" }
+
+      languages.length.zero? ? "" : "AND language in (#{languages.join(', ')})"
     end
 
   end

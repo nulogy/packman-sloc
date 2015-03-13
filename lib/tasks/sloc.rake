@@ -28,9 +28,14 @@ namespace :sloc do
     Snapshot.all.each { |snapshot| puts snapshot.to_s }
   end
 
-  desc 'Generate a report of PackManager source code metrics for the specified snapshot'
-  task :report, [:snapshot_id] => :environment do |_, args|
-    LineCount::Reporter.report(args.snapshot_id)
+  desc 'List all languages found in the PackManager source code metrics'
+  task :languages => :environment do
+    LineCount::Reporter.languages
+  end
+
+  desc 'Generate a report of PackManager source code metrics for the specified snapshot and languages'
+  task :report, [:snapshot_id, :languages] => :environment do |_, args|
+    LineCount::Reporter.report(args.snapshot_id, args.languages)
   end
 
 end
