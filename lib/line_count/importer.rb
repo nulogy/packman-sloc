@@ -1,7 +1,7 @@
 require 'csv'
 
 require_relative '../line_count'
-require_relative '../../lib/line_count/configuration'
+require_relative 'configuration'
 
 #
 # Knows how to import PackManager line count information.
@@ -9,7 +9,6 @@ require_relative '../../lib/line_count/configuration'
 
 module LineCount
   class Importer
-    include Configuration
 
     # Specifies the position of CodeCount attributes in the generated CSV.
     # See http://cloc.sourceforge.net/ for the CSV format.
@@ -25,6 +24,12 @@ module LineCount
 
     def self.import
       new.import(normalized_csv_source)
+    end
+
+    attr_reader :configuration
+
+    def initialize
+      @configuration = Configuration.new
     end
 
     def import(csv_source)
@@ -48,7 +53,7 @@ module LineCount
     def snapshot_attrs
       attrs = {}
 
-      Dir.chdir(root) do
+      Dir.chdir(configuration.root) do
         from = `git show --format=%ci HEAD`
         sha = `git rev-parse HEAD`
 
@@ -59,7 +64,7 @@ module LineCount
     end
 
     def filter_out(row)
-       filters_matcher.match(row[filename_index])
+       configuration.filters_matcher.match(row[filename_index])
     end
 
     def filename_index
@@ -71,7 +76,7 @@ module LineCount
     end
 
     def directory(row)
-      directories_matcher.match(row[filename_index])[1]
+      configuration.directories_matcher.match(row[filename_index])[1]
     end
 
   end

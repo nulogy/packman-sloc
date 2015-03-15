@@ -1,7 +1,7 @@
 require 'find'
 
 require_relative '../line_count'
-require_relative '../../lib/line_count/configuration'
+require_relative 'configuration'
 
 #
 # Backs the util rake tasks.
@@ -9,10 +9,15 @@ require_relative '../../lib/line_count/configuration'
 
 module LineCount
   class Utils
-    include Configuration
 
     def self.file_extensions
       new.file_extensions
+    end
+
+    attr_reader :configuration
+
+    def initialize
+      @configuration = Configuration.new
     end
 
     def file_extensions
@@ -21,7 +26,7 @@ module LineCount
       Find.find(root) do |path|
         path = path.gsub(root, '')
 
-        next unless (path =~ directories_matcher && path !~ filters_matcher)
+        next unless (path =~ configuration.directories_matcher && path !~ configuration.filters_matcher)
 
         if File.basename(path).match('^.*\.(\w*)')
           result << $1

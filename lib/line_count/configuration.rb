@@ -1,5 +1,5 @@
 module LineCount
-  module Configuration
+  class Configuration
 
     PACKMAN_DIRECTORIES = 'lib/line_count/packman_directories.yml'
     PACKMAN_FILTERS = 'lib/line_count/packman_filters.yml'

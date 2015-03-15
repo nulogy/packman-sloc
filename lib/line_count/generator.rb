@@ -1,5 +1,5 @@
 require_relative '../line_count'
-require_relative '../../lib/line_count/configuration'
+require_relative 'configuration'
 
 #
 # Knows how to generate line count information for PackManager.
@@ -7,10 +7,15 @@ require_relative '../../lib/line_count/configuration'
 
 module LineCount
   class Generator
-    include Configuration
 
     def self.generate
       new.generate
+    end
+
+    attr_reader :configuration
+
+    def initialize
+      @configuration = Configuration.new
     end
 
     def generate
@@ -45,7 +50,7 @@ module LineCount
     end
 
     def fully_qualified_directories
-      directories.map { |directory| "#{root}#{directory}" }
+      configuration.directories.map { |directory| "#{root}#{directory}" }
     end
 
     def filter_sloc
