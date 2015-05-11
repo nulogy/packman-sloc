@@ -50,13 +50,13 @@ module LineCount
     end
 
     def fully_qualified_directories
-      configuration.directories.map { |directory| "#{root}#{directory}" }
+      configuration.directories.map { |directory| "#{configuration.root}#{directory}" }
     end
 
     def filter_sloc
       File.open(SLOC_NORMALIZED_FILENAME, 'w') do |filtered|
         File.open(SLOC_RAW_FILENAME).each_with_index do |line, i|
-          filtered << line.gsub(root, '') unless i.zero?
+          filtered << line.gsub(configuration.root, '') unless i.zero?
         end
       end
     end
