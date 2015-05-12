@@ -2,7 +2,7 @@
 Count PackManager SLoC (Source Lines of Code)
 
 Make sure that you have installed the `cloc` command line tool. If you're on OS X and using Homebrew you can use the command:  
-`brew install cloc`
+`brew install cloc`. Or download from http://cloc.sourceforge.net.
 
 Start by using using `git` to get the correct version of PackManager source code into the `sloc` src directory.
 This directory is generated using the expression: `ENV['PACKMANGER_DIR']/sloc` so you may have to set an environment variable.
@@ -10,6 +10,7 @@ This directory is generated using the expression: `ENV['PACKMANGER_DIR']/sloc` s
 Basic Sequence of Rake tasks to run
 
 1. `rake sloc:capture`
+1. `rake sloc:list`
 1. `rake sloc:report\[9,""\]`
 1. `rake sloc:report\[9,"Ruby"\]`
 
