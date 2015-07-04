@@ -5,7 +5,7 @@ module LineCount
     PACKMAN_FILTERS = 'lib/line_count/packman_filters.yml'
 
     def root
-      "#{ENV['PACKMANAGER_DIR']}/sloc/"
+      "#{ENV['SLOC_DIR']}/"
     end
 
     def directories
