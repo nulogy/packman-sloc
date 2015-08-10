@@ -12,8 +12,8 @@ latest version of PackManager simply define the `SLOC_DIR` environment variable 
 
 1. `rake sloc:capture`
 1. `rake sloc:list`
-1. `rake sloc:report\[snapshot_id, ""\]`
-1. `rake sloc:report\[snapshot_id, "Ruby"\]`
+1. `rake sloc:report\[snapshot_id,""\]`
+1. `rake sloc:report\[snapshot_id,"Ruby"\]`
 
 All work is done with these Rake tasks:
 
