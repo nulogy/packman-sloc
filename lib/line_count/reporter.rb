@@ -35,7 +35,10 @@ module LineCount
     end
 
     def results
-      ActiveRecord::Base.connection.execute(sql).map { |row| row.values }
+      results = ActiveRecord::Base.connection.execute(sql).map { |row| row.values }
+      total_lines = results.inject(0) { |total, result| total + result.last.to_i }
+
+      results + [['Total', nil, total_lines]]
     end
 
     def sql
