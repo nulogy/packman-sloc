@@ -15,15 +15,16 @@ latest version of PackManager simply define the `SLOC_DIR` environment variable 
 For more control use one of these report forms to list a specific snapshot and language:
 
 1. `rake sloc:list`
-1. `rake sloc:report\[snapshot_id,""\]`
-1. `rake sloc:report\[snapshot_id,"Ruby"\]`ra
+1. `rake sloc:report\[<snapshot_id>\]`
+1. `rake sloc:report\[<snapshot_id>,"Ruby"\]`
+1. `rake sloc:report\[<snapshot_id>,"Ruby,Javascript"\]`
 
 All work is done with these Rake tasks:
 
 `rake sloc:capture`
 > Capture a snapshot of PackManager source code metrics
 
-`rake sloc:clear[snapshot_id]`
+`rake sloc:clear[<snapshot_id>]`
 > Clear PackManager source code metrics for the specified snapshot
 
 `rake sloc:generate`
@@ -38,6 +39,5 @@ All work is done with these Rake tasks:
 `rake sloc:list`
 > List all runs of PackManager source code metrics
 
-`rake sloc:report[snapshot_id,languages]`
+`rake sloc:report[<snapshot_id>,languages]`
 > Generate a report of PackManager source code metrics for the specified snapshot and languages
-
