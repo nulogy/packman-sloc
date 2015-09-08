@@ -1,8 +1,8 @@
 module LineCount
   class Configuration
 
-    PACKMAN_DIRECTORIES = 'lib/line_count/packman_directories.yml'
-    PACKMAN_FILTERS = 'lib/line_count/packman_filters.yml'
+    PACKMAN_DIRECTORIES = './packman_directories.yml'
+    PACKMAN_FILTERS = './packman_filters.yml'
 
     def root
       "#{ENV['SLOC_DIR']}/"

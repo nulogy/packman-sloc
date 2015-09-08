@@ -8,10 +8,10 @@ directory is referenced using the expression: `ENV['SLOC_DIR']` so you must set 
 to the directory where you have cloned the PackManager source code. Note: if you want to generate metrics for the
 latest version of PackManager simply define the `SLOC_DIR` environment variable to point to the `dev` branch.
 
-**Adjusting the Directories That Are Counted**
+**Adjusting Which Directories Are Counted**
 
-1. `lib/line_count/packman_directories.yml`
-1. `lib/line_count/packman_filters.yml`
+1. `packman_directories.yml`
+1. `packman_filters.yml`
 
 **Basic Sequence of Rake Tasks to Run**
 
