@@ -2,6 +2,9 @@ module LineCount
   class Reporter
 
     def self.report(snapshot_id, language_filter)
+      snapshot_id ||= Snapshot.latest
+      language_filter ||= ""
+
       new(snapshot_id, language_filter).report
     end
 

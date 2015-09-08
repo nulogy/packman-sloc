@@ -13,6 +13,10 @@ class Snapshot < ActiveRecord::Base
 
   has_many :code_counts, dependent: :delete_all
 
+  def self.latest
+    maximum('id')
+  end
+
   def to_s
     "Snapshot #{id} at #{created_at} from #{sha.chomp}"
   end
