@@ -5,7 +5,11 @@ module LineCount
     PACKMAN_FILTERS = './packman_filters.yml'
 
     def root
-      "#{ENV['SLOC_DIR']}/"
+      sloc_dir = ENV['SLOC_DIR']
+
+      raise('Undefined environment variable: SLOC_DIR') if sloc_dir.nil?
+
+      "#{sloc_dir}/"
     end
 
     def directories
