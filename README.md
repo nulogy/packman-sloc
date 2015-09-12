@@ -24,7 +24,7 @@ For more control use one of these report forms to list a specific snapshot and l
 1. `rake sloc:report\[<snapshot_id>,"Ruby"\]`
 1. `rake sloc:report\[<snapshot_id>,"Ruby,Javascript"\]`
 
-All work is done with these Rake tasks:
+**Rake Task Reference**
 
 `rake sloc:capture`
 > Capture a snapshot of PackManager source code metrics
