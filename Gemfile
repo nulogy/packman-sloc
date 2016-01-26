@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '~> 4.2.0'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -60,10 +60,9 @@ end
 
 group :test do
   gem 'factory_girl', '~> 4.5.0'
-  gem 'rspec', '~> 3.2.0'
 end
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.4.0'
 end
