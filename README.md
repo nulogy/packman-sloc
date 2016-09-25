@@ -22,7 +22,7 @@ For more control use one of these report forms to list a specific snapshot and l
 1. `rake sloc:list`
 1. `rake sloc:report\[<snapshot_id>\]`
 1. `rake sloc:report\[<snapshot_id>,"Ruby"\]`
-1. `rake sloc:report\[<snapshot_id>,"Ruby,Javascript"\]`
+1. `rake sloc:report\[<snapshot_id>,"Ruby,JavaScript"\]`
 
 **Rake Task Reference**
 
