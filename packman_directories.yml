@@ -4,7 +4,8 @@
 - bounded_context_adapters
 - bounded_contexts
 - client
+- client_nogulp
 - domain
 - lib
+- modules
 - spec
-- test
