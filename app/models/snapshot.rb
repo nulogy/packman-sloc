@@ -18,7 +18,7 @@ class Snapshot < ActiveRecord::Base
   end
 
   def to_s
-    "Snapshot #{id} at #{created_at} from #{sha.chomp}"
+    "Snapshot #{id} at #{created_at} from #{sha.chomp} [#{from}]"
   end
 
 end
