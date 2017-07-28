@@ -20,9 +20,9 @@ latest version of PackManager simply define the `SLOC_DIR` environment variable 
 For more control use one of these report forms to list a specific snapshot and language:
 
 1. `rake sloc:list`
-1. `rake sloc:report\[<snapshot_id>\]`
-1. `rake sloc:report\[<snapshot_id>,"Ruby"\]`
-1. `rake sloc:report\[<snapshot_id>,"Ruby,JavaScript"\]`
+1. `rake sloc:report[<snapshot_id>]`
+1. `rake sloc:report[<snapshot_id>,Ruby]`
+1. `rake sloc:report[<snapshot_id>,JavaScript]`
 
 **Rake Task Reference**
 
