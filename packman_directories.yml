@@ -1,15 +1,11 @@
 # Generate source code counts for these PackManager root directories:
 - acceptance
 - app
-- background_tasks
 - bounded_context_adapters
 - bounded_contexts
 - client
 - client_nogulp
 - domain
-- extract_api
-- inventory
-- invoices
 - lib
-- receive_orders
+- modules
 - spec
