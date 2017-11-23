@@ -50,7 +50,9 @@ module LineCount
     end
 
     def fully_qualified_directories
-      configuration.directories.map { |directory| "#{configuration.root}#{directory}" }
+      configuration.directories
+        .map { |directory| "#{configuration.root}#{directory}" }
+        .select { |directory| File.exists?(directory) }
     end
 
     def filter_sloc
