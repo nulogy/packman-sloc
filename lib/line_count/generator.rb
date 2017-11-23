@@ -36,13 +36,13 @@ module LineCount
 
     def generate_sloc
       options = [
+        '--by-file',
+        '--csv',
+        '--force-lang=html,erb',
         '--quiet',
         '--skip-uniqueness',
         '--unix',
-        '--csv',
         '--3',
-        '--by-file',
-        '--force-lang=html,erb',
         "--report-file=#{LineCount::SLOC_RAW_FILENAME}",
       ]
 
