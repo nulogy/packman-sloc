@@ -1,7 +1,7 @@
 # Filter out any filename that matches:
-- ^lib/custom_outputs/staged/
+- ^client/bower_components/
+- ^client/common/vendor/
 - ^client/desktop/vendor/
 - ^client/mobile/vendor/
-- ^client/common/vendor/
-- ^client/bower_components/
+- ^lib/custom_outputs/staged/
 
